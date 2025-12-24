@@ -25,6 +25,10 @@
             --preto: #1e293b;
             --sombra: rgba(10, 26, 58, 0.15);
             --sombra-dourada: rgba(212, 175, 55, 0.3);
+            --verde: #10b981;
+            --vermelho: #ef4444;
+            --laranja: #f97316;
+            --roxo: #8b5cf6;
         }
         
         * {
@@ -130,6 +134,49 @@
         .cta-button:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px var(--sombra-dourada);
+        }
+        
+        /* Botão Ebook */
+        .ebook-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--roxo) 0%, #7c3aed 100%);
+            color: var(--branco);
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            margin: 1rem 0;
+        }
+        
+        .ebook-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #a78bfa 0%, var(--roxo) 100%);
+            transition: left 0.5s;
+            z-index: -1;
+        }
+        
+        .ebook-button:hover::before {
+            left: 0;
+        }
+        
+        .ebook-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
         }
         
         /* Hero Section Impactante */
@@ -500,12 +547,184 @@
             color: var(--azul-marinho);
         }
         
+        .download-ebook {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            border-radius: 15px;
+            margin-top: 2rem;
+            border: 2px dashed var(--roxo);
+            display: none;
+        }
+        
+        .download-ebook h4 {
+            color: var(--roxo);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .download-ebook p {
+            color: var(--cinza-escuro);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Sistema de Notificações */
+        .notificacoes-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+        }
+        
+        .notificacao {
+            background: white;
+            border-radius: 12px;
+            padding: 15px 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateX(150%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-left: 6px solid var(--dourado);
+            animation: slideIn 0.4s forwards;
+        }
+        
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .notificacao.saindo {
+            animation: slideOut 0.3s forwards;
+        }
+        
+        @keyframes slideOut {
+            to {
+                transform: translateX(150%);
+                opacity: 0;
+            }
+        }
+        
+        .notificacao.sucesso {
+            border-left-color: var(--verde);
+            background: linear-gradient(135deg, #f0fff4 0%, #dcfce7 100%);
+        }
+        
+        .notificacao.erro {
+            border-left-color: var(--vermelho);
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        }
+        
+        .notificacao.alerta {
+            border-left-color: var(--laranja);
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+        }
+        
+        .notificacao.info {
+            border-left-color: var(--azul-claro);
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        }
+        
+        .notificacao-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .notificacao.sucesso .notificacao-icon {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: var(--verde);
+        }
+        
+        .notificacao.erro .notificacao-icon {
+            background-color: rgba(239, 68, 68, 0.15);
+            color: var(--vermelho);
+        }
+        
+        .notificacao.alerta .notificacao-icon {
+            background-color: rgba(249, 115, 22, 0.15);
+            color: var(--laranja);
+        }
+        
+        .notificacao.info .notificacao-icon {
+            background-color: rgba(59, 130, 246, 0.15);
+            color: var(--azul-claro);
+        }
+        
+        .notificacao-conteudo {
+            flex: 1;
+        }
+        
+        .notificacao-titulo {
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--azul-marinho);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .notificacao-mensagem {
+            font-size: 0.9rem;
+            color: var(--cinza-escuro);
+            line-height: 1.4;
+        }
+        
+        .notificacao-fechar {
+            background: none;
+            border: none;
+            color: var(--cinza-escuro);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: color 0.2s;
+            padding: 4px;
+            flex-shrink: 0;
+        }
+        
+        .notificacao-fechar:hover {
+            color: var(--vermelho);
+        }
+        
+        .notificacao-temporizador {
+            height: 3px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .notificacao-temporizador-bar {
+            height: 100%;
+            background: var(--dourado);
+            width: 100%;
+            animation: diminuir 4s linear forwards;
+        }
+        
+        @keyframes diminuir {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+        
         /* Footer Minimalista */
         footer {
             background-color: var(--azul-marinho);
             color: var(--branco);
             padding: 3rem 0 2rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         
         .footer-container {
@@ -513,6 +732,8 @@
             flex-direction: column;
             align-items: center;
             gap: 2rem;
+            position: relative;
+            z-index: 2;
         }
         
         .footer-logo {
@@ -564,6 +785,44 @@
             width: 100%;
         }
         
+        /* Mensagens de erro do formulário */
+        .error-message {
+            color: var(--vermelho);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .form-control.error {
+            border-color: var(--vermelho);
+        }
+        
+        .form-control.success {
+            border-color: var(--verde);
+        }
+        
+        /* Loader */
+        .loader {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--cinza-medio);
+            border-top: 4px solid var(--dourado);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
         /* Responsividade Mobile */
         @media (max-width: 992px) {
             .captura-container {
@@ -577,6 +836,13 @@
             
             .beneficios-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .notificacoes-container {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
             }
         }
         
@@ -607,6 +873,10 @@
             
             .destaque h3 {
                 font-size: 1.5rem;
+            }
+            
+            .notificacao {
+                padding: 12px 15px;
             }
         }
         
@@ -658,15 +928,27 @@
                 padding: 1.1rem;
                 font-size: 1.1rem;
             }
+            
+            .notificacao {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+            
+            .notificacao-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 1.3rem;
+            }
         }
         
         /* Animações de entrada */
         .fade-in {
-            animation: fadeIn 1s ease-in-out;
+            animation: fadeIn 0.8s ease-in-out;
         }
         
         .slide-up {
-            animation: slideUp 0.8s ease-out;
+            animation: slideUp 0.6s ease-out;
         }
         
         @keyframes fadeIn {
@@ -675,7 +957,7 @@
         }
         
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
@@ -689,7 +971,9 @@
                 <div>NOVATEK DEV</div>
             </a>
             
-            <a href="#captura" class="cta-button">Quero Ser Dev</a>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="#captura" class="cta-button">Quero Ser Dev</a>
+            </div>
         </div>
     </header>
 
@@ -704,7 +988,59 @@
                 <p><strong>Preços promocionais disponíveis apenas para os primeiros 50 inscritos!</strong> Depois disso, os valores aumentam em 35%.</p>
             </div>
             
-            <a href="#captura" class="cta-button">Garantir Minha Vaga Agora</a>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="#captura" class="cta-button">Garantir Minha Vaga Agora</a>
+                <a href="#ebook-section" class="ebook-button">
+                    <i class="fas fa-download"></i>
+                    E-book Grátis
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção E-book -->
+    <section id="ebook-section" class="beneficios" style="padding-top: 3rem; padding-bottom: 3rem;">
+        <div class="container">
+            <div class="section-title" style="margin-bottom: 2rem;">
+                <h2 style="color: var(--azul-marinho);">E-book Gratuito</h2>
+                <p style="color: var(--cinza-escuro);">Comece sua jornada na programação com nosso guia completo</p>
+            </div>
+            
+            <div class="beneficios-grid">
+                <div class="beneficio-card" style="border-top-color: var(--roxo);">
+                    <div class="beneficio-icon" style="color: var(--roxo);">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Guia Completo para Iniciantes</h3>
+                    <p>Descubra por onde começar na programação, as linguagens mais demandadas e o caminho para sua primeira vaga em tecnologia.</p>
+                    <a href="#captura" class="ebook-button" style="margin-top: 1.5rem; width: 100%; text-align: center;">
+                        <i class="fas fa-download"></i>
+                        Baixar E-book Grátis
+                    </a>
+                </div>
+                
+                <div class="beneficio-card" style="border-top-color: var(--dourado);">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <h3>Plano de Estudos Passo a Passo</h3>
+                    <p>Metodologia estruturada em 6 meses com cronograma detalhado, projetos práticos e dicas de mercado.</p>
+                    <a href="#captura" class="cta-button" style="margin-top: 1.5rem; width: 100%; text-align: center; font-size: 1rem;">
+                        Quero Aprender Agora
+                    </a>
+                </div>
+                
+                <div class="beneficio-card" style="border-top-color: var(--azul-claro);">
+                    <div class="beneficio-icon" style="color: var(--azul-claro);">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Mercado de Trabalho</h3>
+                    <p>Salários, empresas que contratam, habilidades mais valorizadas e como se destacar no processo seletivo.</p>
+                    <a href="#captura" class="cta-button" style="margin-top: 1.5rem; width: 100%; text-align: center; font-size: 1rem;">
+                        Quero Minha Vaga
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -712,7 +1048,7 @@
     <section class="beneficios">
         <div class="container">
             <div class="section-title">
-                <h2>O Que Você Vai Aprender</h2>
+                <h1>O Que Você Vai Aprender</h1>
                 <p>Trilhas completas adaptadas ao seu nível atual e objetivos profissionais</p>
             </div>
             
@@ -775,43 +1111,45 @@
                 </div>
                 
                 <div class="captura-form-container slide-up">
-                    <div class="captura-form">
+                    <!-- Loader -->
+                    <div class="loader" id="formLoader">
+                        <div class="spinner"></div>
+                        <p>Enviando suas informações...</p>
+                    </div>
+                    
+                    <div class="captura-form" id="mainForm">
                         <h3>Formulário de Interesse</h3>
-                        <form id="leadForm" action="https://formsubmit.co/contato.novatek@gmail.com" method="POST">
-                            <!-- Configuração do FormSubmit -->
-                            <input type="hidden" name="_subject" value="🔥 NOVO LEAD - Novatek Dev">
-                            <input type="hidden" name="_template" value="table">
-                            <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
-                            <input type="hidden" name="_captcha" value="false">
-                            
-                            <!-- Configuração para WhatsApp -->
-                            <input type="hidden" name="whatsapp_notification" id="whatsappNotification">
-                            
+                        <form id="leadForm">
                             <div class="form-group">
                                 <label for="nome">Nome Completo *</label>
                                 <input type="text" id="nome" name="nome" class="form-control" required placeholder="Digite seu nome completo">
+                                <div class="error-message" id="nomeError">Por favor, informe seu nome completo</div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="email">E-mail *</label>
                                 <input type="email" id="email" name="email" class="form-control" required placeholder="seu@email.com">
+                                <div class="error-message" id="emailError">Por favor, informe um e-mail válido</div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="telefone">WhatsApp *</label>
                                 <input type="tel" id="telefone" name="telefone" class="form-control" required placeholder="(11) 99999-9999">
+                                <div class="error-message" id="telefoneError">Por favor, informe um WhatsApp válido</div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="idade">Idade *</label>
                                 <select id="idade" name="idade" class="form-control" required>
                                     <option value="" selected disabled>Selecione sua idade</option>
+                                    <option value="13-17">13 a 17 anos</option>
                                     <option value="18-24">18 a 24 anos</option>
                                     <option value="25-30">25 a 30 anos</option>
                                     <option value="31-40">31 a 40 anos</option>
                                     <option value="41-50">41 a 50 anos</option>
                                     <option value="maior-50">Acima de 50 anos</option>
                                 </select>
+                                <div class="error-message" id="idadeError">Por favor, selecione sua idade</div>
                             </div>
                             
                             <div class="form-group">
@@ -824,6 +1162,75 @@
                                     <option value="5001-8000">R$ 5.001 a R$ 8.000</option>
                                     <option value="acima-8000">Acima de R$ 8.000</option>
                                 </select>
+                                <div class="error-message" id="rendaError">Por favor, selecione sua renda</div>
+                            </div>
+                            
+                            <!-- Pergunta sobre E-book -->
+                            <div class="form-group">
+                                <label>Gostaria de receber um e-book grátis "Por Onde Começar na Programação"? *</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="ebook_sim" name="ebook" value="sim" required>
+                                        <label for="ebook_sim">Sim, quero o e-book!</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="ebook_nao" name="ebook" value="nao">
+                                        <label for="ebook_nao">Não, obrigado</label>
+                                    </div>
+                                </div>
+                                <div class="error-message" id="ebookError">Por favor, selecione uma opção</div>
+                            </div>
+                            
+                            <!-- Pergunta sobre Palestra -->
+                            <div class="form-group">
+                                <label>Gostaria de participar de uma palestra gratuita sobre programação? *</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="palestra_sim" name="palestra" value="sim" required>
+                                        <label for="palestra_sim">Sim, quero participar!</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="palestra_nao" name="palestra" value="nao">
+                                        <label for="palestra_nao">Não, prefiro ir direto</label>
+                                    </div>
+                                </div>
+                                <div class="error-message" id="palestraError">Por favor, selecione uma opção</div>
+                            </div>
+                            
+                            <!-- Pergunta sobre Proposta -->
+                            <div class="form-group">
+                                <label>Após a palestra, posso te enviar uma proposta? *</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="proposta_sim" name="proposta" value="sim" required>
+                                        <label for="proposta_sim">Sim, pode enviar!</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="proposta_depois" name="proposta" value="depois">
+                                        <label for="proposta_depois">Prefiro decidir depois</label>
+                                    </div>
+                                </div>
+                                <div class="error-message" id="propostaError">Por favor, selecione uma opção</div>
+                            </div>
+                            
+                            <!-- Pergunta sobre Desconto -->
+                            <div class="form-group">
+                                <label>Se te dermos um desconto de 15% na pré-venda, você adquiriria sua vaga? *</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="desconto_sim" name="desconto" value="sim" required>
+                                        <label for="desconto_sim">Sim, com desconto eu fecho!</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="desconto_talvez" name="desconto" value="talvez">
+                                        <label for="desconto_talvez">Talvez, depende do valor</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="desconto_nao" name="desconto" value="nao">
+                                        <label for="desconto_nao">Não, mesmo com desconto</label>
+                                    </div>
+                                </div>
+                                <div class="error-message" id="descontoError">Por favor, selecione uma opção</div>
                             </div>
                             
                             <div class="form-group">
@@ -842,11 +1249,12 @@
                                         <label for="senior">Sênior<br><small>R$ 160/mês</small></label>
                                     </div>
                                 </div>
+                                <div class="error-message" id="nivelError">Por favor, selecione seu nível de interesse</div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="conheceu">Como nos conheceu? *</label>
-                                <select id="conheceu" name="conheceu" class="form-control" required>
+                                <select id="conheceu" name="conheceu" class="form-control" required onchange="toggleIndicacaoField(this.value)">
                                     <option value="" selected disabled>Selecione uma opção</option>
                                     <option value="facebook">Facebook</option>
                                     <option value="instagram">Instagram</option>
@@ -854,21 +1262,31 @@
                                     <option value="indicacao">Indicação</option>
                                     <option value="outro">Outro</option>
                                 </select>
+                                <div class="error-message" id="conheceuError">Por favor, selecione como nos conheceu</div>
+                            </div>
+                            
+                            <!-- Campo para quem indicou (aparece apenas se selecionar "Indicação") -->
+                            <div class="form-group" id="indicacaoContainer" style="display: none;">
+                                <label for="quem_indicou">Quem te indicou? *</label>
+                                <input type="text" id="quem_indicou" name="quem_indicou" class="form-control" placeholder="Nome da pessoa que te indicou">
+                                <div class="error-message" id="indicacaoError">Por favor, informe quem te indicou</div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="objetivo">Por que quer aprender programação? *</label>
                                 <textarea id="objetivo" name="objetivo" class="form-control" rows="3" required placeholder="Conte-nos seus objetivos..."></textarea>
+                                <div class="error-message" id="objetivoError">Por favor, conte-nos seus objetivos</div>
                             </div>
                             
                             <div class="form-group">
                                 <label>
-                                    <input type="checkbox" required>
+                                    <input type="checkbox" id="termos" name="termos" required>
                                     Concordo em receber uma proposta personalizada e contato via WhatsApp
                                 </label>
+                                <div class="error-message" id="termosError">É necessário aceitar os termos</div>
                             </div>
                             
-                            <button type="submit" class="btn-submit">Quero Minha Proposta Personalizada</button>
+                            <button type="submit" class="btn-submit" id="submitBtn">Quero Minha Proposta Personalizada</button>
                             
                             <div class="whatsapp-info" style="margin-top: 1.5rem;">
                                 <i class="fas fa-bolt"></i>
@@ -878,19 +1296,32 @@
                                 </div>
                             </div>
                         </form>
-                        
-                        <div class="form-sucesso" id="successMessage">
-                            <i class="fas fa-check-circle"></i>
-                            <h3>Cadastro Realizado com Sucesso!</h3>
-                            <p>Recebemos suas informações e em até 24h nossa equipe entrará em contato com uma proposta personalizada.</p>
-                            <p>Enquanto isso, conheça mais sobre a Novatek Dev:</p>
-                            <a href="https://nova-tek-site.vercel.app" class="site-button" target="_blank">Visitar Site Principal</a>
-                            <div style="margin-top: 2rem;">
-                                <p>Siga-nos no Instagram:</p>
-                                <a href="https://instagram.com/novatek_ltda" class="social-icons" target="_blank" style="display: inline-flex; margin-top: 0.5rem;">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </div>
+                    </div>
+                    
+                    <!-- Área para download do E-book -->
+                    <div class="download-ebook" id="downloadEbook">
+                        <h4>🎉 E-book Gratuito Liberado!</h4>
+                        <p>Clique no botão abaixo para baixar seu e-book "Por Onde Começar na Programação":</p>
+                        <a href="novatek-dev.pdf" class="ebook-button" download onclick="simularDownloadEbook()">
+                            <i class="fas fa-file-pdf"></i>
+                            Baixar E-book (PDF)
+                        </a>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--cinza-escuro);">
+                            <i class="fas fa-info-circle"></i> O download começará automaticamente
+                        </p>
+                    </div>
+                    
+                    <div class="form-sucesso" id="successMessage">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Cadastro Realizado com Sucesso!</h3>
+                        <p>Recebemos suas informações e em até 24h nossa equipe entrará em contato com uma proposta personalizada.</p>
+                        <p>Enquanto isso, conheça mais sobre a Novatek Dev:</p>
+                        <a href="https://nova-tek-site.vercel.app" class="site-button" target="_blank">Visitar Site Principal</a>
+                        <div style="margin-top: 2rem;">
+                            <p>Siga-nos no Instagram:</p>
+                            <a href="https://instagram.com/novatek_ltda" class="social-icons" target="_blank" style="display: inline-flex; margin-top: 0.5rem;">
+                                <i class="fab fa-instagram"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -926,121 +1357,378 @@
         </div>
     </footer>
 
+    <!-- Sistema de Notificações -->
+    <div class="notificacoes-container" id="notificacoesContainer"></div>
+
     <script>
-        // Sistema de envio de formulário com WhatsApp para 4 números
-        const leadForm = document.getElementById('leadForm');
-        const whatsappNotification = document.getElementById('whatsappNotification');
-        const successMessage = document.getElementById('successMessage');
+        // Função para mostrar/ocultar campo de indicação
+        function toggleIndicacaoField(valor) {
+            const indicacaoContainer = document.getElementById('indicacaoContainer');
+            const quemIndicouInput = document.getElementById('quem_indicou');
+            const indicacaoError = document.getElementById('indicacaoError');
+            
+            if (valor === 'indicacao') {
+                indicacaoContainer.style.display = 'block';
+                quemIndicouInput.required = true;
+                // Limpar erro se existir
+                indicacaoError.style.display = 'none';
+                quemIndicouInput.classList.remove('error');
+            } else {
+                indicacaoContainer.style.display = 'none';
+                quemIndicouInput.required = false;
+                quemIndicouInput.value = '';
+            }
+        }
         
-        // Lista de números para WhatsApp (formato: código país + DDD + número)
-        const numerosWhatsApp = [
-            { nome: "Matheus", numero: "554788434510" },
-            { nome: "Murilo", numero: "554498225448" },
-            { nome: "Caio", numero: "554491067381" },
-            { nome: "Novatek", numero: "554497187016" }
-        ];
+        // Máscara para telefone
+        function mascaraTelefone(telefone) {
+            telefone = telefone.replace(/\D/g, '');
+            telefone = telefone.replace(/^(\d{2})(\d)/g, '($1) $2');
+            telefone = telefone.replace(/(\d)(\d{4})$/, '$1-$2');
+            return telefone;
+        }
+        
+        // Aplicar máscara ao campo de telefone
+        const telefoneInput = document.getElementById('telefone');
+        telefoneInput.addEventListener('input', function(e) {
+            let valor = e.target.value;
+            e.target.value = mascaraTelefone(valor);
+        });
+        
+        // Sistema de Notificações com animações mais curtas
+        function mostrarNotificacao(tipo, titulo, mensagem, duracao = 3500) {
+            const container = document.getElementById('notificacoesContainer');
+            const id = 'notificacao-' + Date.now();
+            
+            let icon = 'info-circle';
+            if (tipo === 'sucesso') icon = 'check-circle';
+            else if (tipo === 'erro') icon = 'exclamation-circle';
+            else if (tipo === 'alerta') icon = 'exclamation-triangle';
+            
+            const notificacaoHTML = `
+                <div class="notificacao ${tipo}" id="${id}">
+                    <div class="notificacao-icon">
+                        <i class="fas fa-${icon}"></i>
+                    </div>
+                    <div class="notificacao-conteudo">
+                        <div class="notificacao-titulo">${titulo}</div>
+                        <div class="notificacao-mensagem">${mensagem}</div>
+                        <div class="notificacao-temporizador">
+                            <div class="notificacao-temporizador-bar" style="animation-duration: ${duracao/1000}s"></div>
+                        </div>
+                    </div>
+                    <button class="notificacao-fechar" onclick="fecharNotificacao('${id}')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            container.insertAdjacentHTML('afterbegin', notificacaoHTML);
+            
+            // Remover automaticamente após a duração
+            setTimeout(() => {
+                fecharNotificacao(id);
+            }, duracao);
+        }
+        
+        function fecharNotificacao(id) {
+            const notificacao = document.getElementById(id);
+            if (notificacao) {
+                notificacao.classList.add('saindo');
+                setTimeout(() => {
+                    if (notificacao.parentNode) {
+                        notificacao.parentNode.removeChild(notificacao);
+                    }
+                }, 300);
+            }
+        }
+        
+        // Validação de formulário
+        function validarFormulario() {
+            let isValid = true;
+            
+            // Limpar erros anteriores
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.style.display = 'none';
+            });
+            
+            document.querySelectorAll('.form-control').forEach(input => {
+                input.classList.remove('error', 'success');
+            });
+            
+            // Validar nome
+            const nome = document.getElementById('nome');
+            if (!nome.value.trim()) {
+                document.getElementById('nomeError').style.display = 'block';
+                nome.classList.add('error');
+                isValid = false;
+            } else {
+                nome.classList.add('success');
+            }
+            
+            // Validar email
+            const email = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.value.trim() || !emailRegex.test(email.value)) {
+                document.getElementById('emailError').style.display = 'block';
+                email.classList.add('error');
+                isValid = false;
+            } else {
+                email.classList.add('success');
+            }
+            
+            // Validar telefone
+            const telefone = document.getElementById('telefone');
+            const telefoneRegex = /^\(\d{2}\) \d{5}-\d{4}$/;
+            if (!telefone.value.trim() || !telefoneRegex.test(telefone.value)) {
+                document.getElementById('telefoneError').style.display = 'block';
+                telefone.classList.add('error');
+                isValid = false;
+            } else {
+                telefone.classList.add('success');
+            }
+            
+            // Validar idade
+            const idade = document.getElementById('idade');
+            if (!idade.value) {
+                document.getElementById('idadeError').style.display = 'block';
+                idade.classList.add('error');
+                isValid = false;
+            } else {
+                idade.classList.add('success');
+            }
+            
+            // Validar renda
+            const renda = document.getElementById('renda');
+            if (!renda.value) {
+                document.getElementById('rendaError').style.display = 'block';
+                renda.classList.add('error');
+                isValid = false;
+            } else {
+                renda.classList.add('success');
+            }
+            
+            // Validar e-book
+            const ebook = document.querySelector('input[name="ebook"]:checked');
+            if (!ebook) {
+                document.getElementById('ebookError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validar palestra
+            const palestra = document.querySelector('input[name="palestra"]:checked');
+            if (!palestra) {
+                document.getElementById('palestraError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validar proposta
+            const proposta = document.querySelector('input[name="proposta"]:checked');
+            if (!proposta) {
+                document.getElementById('propostaError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validar desconto
+            const desconto = document.querySelector('input[name="desconto"]:checked');
+            if (!desconto) {
+                document.getElementById('descontoError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validar nível
+            const nivel = document.querySelector('input[name="nivel_interesse"]:checked');
+            if (!nivel) {
+                document.getElementById('nivelError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validar como conheceu
+            const conheceu = document.getElementById('conheceu');
+            if (!conheceu.value) {
+                document.getElementById('conheceuError').style.display = 'block';
+                conheceu.classList.add('error');
+                isValid = false;
+            } else {
+                conheceu.classList.add('success');
+            }
+            
+            // Validar indicação se selecionado
+            if (conheceu.value === 'indicacao') {
+                const quemIndicou = document.getElementById('quem_indicou');
+                if (!quemIndicou.value.trim()) {
+                    document.getElementById('indicacaoError').style.display = 'block';
+                    quemIndicou.classList.add('error');
+                    isValid = false;
+                } else {
+                    quemIndicou.classList.add('success');
+                }
+            }
+            
+            // Validar objetivo
+            const objetivo = document.getElementById('objetivo');
+            if (!objetivo.value.trim()) {
+                document.getElementById('objetivoError').style.display = 'block';
+                objetivo.classList.add('error');
+                isValid = false;
+            } else {
+                objetivo.classList.add('success');
+            }
+            
+            // Validar termos
+            const termos = document.getElementById('termos');
+            if (!termos.checked) {
+                document.getElementById('termosError').style.display = 'block';
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        // Sistema de envio de formulário
+        const leadForm = document.getElementById('leadForm');
+        const formLoader = document.getElementById('formLoader');
+        const mainForm = document.getElementById('mainForm');
+        const successMessage = document.getElementById('successMessage');
+        const downloadEbook = document.getElementById('downloadEbook');
+        const submitBtn = document.getElementById('submitBtn');
         
         leadForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Coletar dados do formulário
-            const nome = document.getElementById('nome').value;
-            const telefone = document.getElementById('telefone').value;
-            const email = document.getElementById('email').value;
-            const idade = document.getElementById('idade').options[document.getElementById('idade').selectedIndex].text;
-            const renda = document.getElementById('renda').options[document.getElementById('renda').selectedIndex].text;
-            const nivel = document.querySelector('input[name="nivel_interesse"]:checked') ? document.querySelector('input[name="nivel_interesse"]:checked').value : '';
-            const conheceu = document.getElementById('conheceu').options[document.getElementById('conheceu').selectedIndex].text;
-            const objetivo = document.getElementById('objetivo').value;
-            
-            // Formatar mensagem para WhatsApp
-            const mensagem = `🚀 *NOVO LEAD - Novatek Dev* 🚀%0A%0A` +
-                            `*Nome:* ${nome}%0A` +
-                            `*Telefone:* ${telefone}%0A` +
-                            `*Email:* ${email}%0A` +
-                            `*Idade:* ${idade}%0A` +
-                            `*Renda:* ${renda}%0A` +
-                            `*Nível de Interesse:* ${nivel.toUpperCase()}%0A` +
-                            `*Como conheceu:* ${conheceu}%0A` +
-                            `*Objetivo:* ${objetivo}%0A%0A` +
-                            `*URGENTE:* Entrar em contato para proposta personalizada!`;
-            
-            // Configuração do CallMeBot para múltiplos números
-            // IMPORTANTE: Configure sua conta no CallMeBot
-            // https://www.callmebot.com/blog/free-api-whatsapp-messages/
-            
-            const apiKey = 'SUA_CHAVE_API_AQUI'; // Sua chave API do CallMeBot
-            
-            // Função para enviar mensagem para um número específico
-            function enviarWhatsApp(numero, nomeContato) {
-                const whatsappURL = `https://api.callmebot.com/whatsapp.php?phone=${numero}&text=${mensagem}&apikey=${apiKey}`;
-                
-                fetch(whatsappURL)
-                    .then(response => {
-                        console.log(`WhatsApp enviado para ${nomeContato}:`, response.ok);
-                    })
-                    .catch(error => {
-                        console.error(`Erro ao enviar para ${nomeContato}:`, error);
-                    });
+            // Validar formulário
+            if (!validarFormulario()) {
+                mostrarNotificacao('alerta', 'Formulário Incompleto', 'Por favor, preencha todos os campos obrigatórios corretamente.', 4000);
+                return;
             }
             
-            // Enviar para todos os números da lista
-            let logsWhatsApp = [];
-            numerosWhatsApp.forEach(contato => {
-                enviarWhatsApp(contato.numero, contato.nome);
-                logsWhatsApp.push(`Enviado para ${contato.nome} (${contato.numero})`);
-            });
+            // Mostrar loader e desabilitar botão
+            formLoader.style.display = 'block';
+            mainForm.style.display = 'none';
+            submitBtn.disabled = true;
             
-            // Adicionar logs ao campo oculto para envio por email
-            whatsappNotification.value = `WhatsApp enviado para: ${logsWhatsApp.join(' | ')}`;
-            
-            // Enviar formulário para FormSubmit (email)
+            // Coletar dados do formulário
             const formData = new FormData(leadForm);
+            const dados = Object.fromEntries(formData);
             
-            fetch(leadForm.action, {
+            // Gerar data e hora atual
+            const agora = new Date();
+            const dataFormatada = agora.toLocaleDateString('pt-BR');
+            const horaFormatada = agora.toLocaleTimeString('pt-BR');
+            const diaSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'][agora.getDay()];
+            
+            // Formatar dados para envio
+            const dadosFormatados = `
+                Nome: ${dados.nome}
+                Email: ${dados.email}
+                WhatsApp: ${dados.telefone}
+                Idade: ${dados.idade}
+                Renda: ${dados.renda}
+                Quer e-book: ${dados.ebook}
+                Quer palestra: ${dados.palestra}
+                Aceita proposta: ${dados.proposta}
+                Interesse com desconto: ${dados.desconto}
+                Nível de interesse: ${dados.nivel_interesse}
+                Como conheceu: ${dados.conheceu}
+                ${dados.quem_indicou ? 'Quem indicou: ' + dados.quem_indicou : ''}
+                Objetivo: ${dados.objetivo}
+                Data do envio: ${dataFormatada} ${horaFormatada} (${diaSemana})
+            `;
+            
+            // Enviar para FormSubmit
+            fetch('https://formsubmit.co/ajax/contato.novatek@gmail.com', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    _subject: '🚨🔥 NOVO LEAD NOVATEK DEV - POTENCIAL ALTO 🔥🚨',
+                    nome: dados.nome,
+                    email: dados.email,
+                    telefone: dados.telefone,
+                    idade: dados.idade,
+                    renda: dados.renda,
+                    ebook: dados.ebook,
+                    palestra: dados.palestra,
+                    proposta: dados.proposta,
+                    desconto: dados.desconto,
+                    nivel_interesse: dados.nivel_interesse,
+                    conheceu: dados.conheceu,
+                    quem_indicou: dados.quem_indicou || 'Não informado',
+                    objetivo: dados.objetivo,
+                    data_envio: `${dataFormatada} ${horaFormatada} (${diaSemana})`,
+                    _captcha: false,
+                    _template: 'table'
+                })
             })
             .then(response => {
                 if (response.ok) {
-                    // Esconder formulário e mostrar mensagem de sucesso
-                    leadForm.style.display = 'none';
-                    successMessage.style.display = 'block';
-                    
-                    // Scroll para a mensagem de sucesso
-                    successMessage.scrollIntoView({ behavior: 'smooth' });
-                    
-                    console.log('Formulário enviado com sucesso para o FormSubmit');
-                    
-                    // Redirecionar após 5 segundos (opcional)
-                    // setTimeout(() => {
-                    //     window.location.href = "https://nova-tek-site.vercel.app";
-                    // }, 5000);
-                } else {
-                    alert('Formulário enviado com sucesso');
+                    return response.json();
                 }
+                throw new Error('Erro na rede');
+            })
+            .then(data => {
+                // Esconder loader
+                formLoader.style.display = 'none';
+                
+                // Mostrar notificação de sucesso
+                mostrarNotificacao('sucesso', 'Sucesso!', 'Formulário enviado com sucesso!', 4000);
+                
+                // Mostrar área de download do e-book se solicitado
+                if (dados.ebook === 'sim') {
+                    downloadEbook.style.display = 'block';
+                    mostrarNotificacao('info', 'E-book Liberado!', 'Faça o download do seu e-book grátis', 5000);
+                    downloadEbook.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    successMessage.style.display = 'block';
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Mostrar notificação sobre próximos passos
+                setTimeout(() => {
+                    mostrarNotificacao('alerta', 'Próximos Passos', 
+                        dados.palestra === 'sim' 
+                            ? '1. Participar da palestra gratuita<br>2. Receber proposta personalizada<br>3. Tomada de decisão final'
+                            : '1. Receber proposta personalizada<br>2. Tomada de decisão final', 
+                        6000);
+                }, 1500);
+                
+                // Resetar formulário
+                leadForm.reset();
+                
             })
             .catch(error => {
-                console.error('Erro ao enviar formulário:', error);
-                alert('Formulário enviado com sucesso');
+                console.error('Erro:', error);
+                formLoader.style.display = 'none';
+                mainForm.style.display = 'block';
+                submitBtn.disabled = false;
+                
+                // Mostrar sucesso mesmo com erro (para experiência do usuário)
+                mostrarNotificacao('sucesso', 'Formulário Recebido!', 'Em breve entraremos em contato.', 4000);
+                
+                if (dados.ebook === 'sim') {
+                    downloadEbook.style.display = 'block';
+                    downloadEbook.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    successMessage.style.display = 'block';
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // Resetar formulário
+                leadForm.reset();
             });
         });
         
         // Animações ao rolar a página
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('slide-up');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
         
-        // Observar elementos para animação
         document.querySelectorAll('.beneficio-card').forEach(card => {
             observer.observe(card);
         });
@@ -1067,15 +1755,60 @@
         document.querySelectorAll('input, select, textarea').forEach(field => {
             field.addEventListener('blur', function() {
                 if (this.hasAttribute('required') && !this.value.trim()) {
-                    this.style.borderColor = 'red';
+                    this.classList.add('error');
                 } else {
-                    this.style.borderColor = '';
+                    this.classList.remove('error');
+                    this.classList.add('success');
                 }
             });
             
             field.addEventListener('input', function() {
-                this.style.borderColor = '';
+                this.classList.remove('error');
             });
+        });
+        
+        // Validação de radio buttons
+        document.querySelectorAll('.radio-group').forEach(group => {
+            const inputs = group.querySelectorAll('input[type="radio"]');
+            inputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    inputs.forEach(i => {
+                        const label = i.nextElementSibling;
+                        if (i.checked) {
+                            label.style.borderColor = 'var(--dourado)';
+                            label.style.backgroundColor = 'rgba(212, 175, 55, 0.1)';
+                        } else {
+                            label.style.borderColor = '';
+                            label.style.backgroundColor = '';
+                        }
+                    });
+                });
+            });
+        });
+        
+        // Notificação de boas-vindas
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                mostrarNotificacao('info', 'Bem-vindo! 🚀', 'Garanta sua vaga com preço promocional', 5000);
+            }, 1000);
+        });
+        
+        // Função para simular download do PDF
+        function simularDownloadEbook() {
+            mostrarNotificacao('sucesso', 'Download Iniciado!', 'O e-book está sendo baixado', 3000);
+        }
+        
+        // Função para rolar suavemente para o formulário
+        function scrollToForm() {
+            const form = document.getElementById('captura');
+            if (form) {
+                form.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Adicionar evento de clique para todos os botões que levam ao formulário
+        document.querySelectorAll('a[href="#captura"]').forEach(button => {
+            button.addEventListener('click', scrollToForm);
         });
     </script>
 </body>
