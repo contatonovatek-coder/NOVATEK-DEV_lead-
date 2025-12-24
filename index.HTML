@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novatek Dev - Torne-se um Desenvolvedor Profissional</title>
+    <link rel="shortcut icon" href="/c.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-marinho: #0a1a3a;
+            --azul-medio: #1e3a8a;
+            --azul-claro: #3b82f6;
+            --azul-bem-claro: #eff6ff;
+            --dourado: #d4af37;
+            --dourado-claro: #f5e8b0;
+            --dourado-escuro: #b8941f;
+            --branco: #ffffff;
+            --cinza-claro: #f8fafc;
+            --cinza-medio: #e2e8f0;
+            --cinza-escuro: #64748b;
+            --preto: #1e293b;
+            --sombra: rgba(10, 26, 58, 0.15);
+            --sombra-dourada: rgba(212, 175, 55, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--preto);
+            background-color: var(--branco);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--azul-marinho);
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Minimalista */
+        header {
+            background-color: var(--azul-marinho);
+            color: var(--branco);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--dourado);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            font-size: 2.3rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--dourado) 0%, var(--dourado-escuro) 100%);
+            color: var(--azul-marinho);
+            padding: 1rem 2.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px var(--sombra-dourada);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dourado-claro) 0%, var(--dourado) 100%);
+            transition: left 0.5s;
+            z-index: -1;
+        }
+        
+        .cta-button:hover::before {
+            left: 0;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--sombra-dourada);
+        }
+        
+        /* Hero Section Impactante */
+        .hero {
+            background: linear-gradient(135deg, rgba(10, 26, 58, 0.95) 0%, rgba(30, 58, 138, 0.9) 100%), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--branco);
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            color: var(--branco);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin: 0 auto 2.5rem;
+            color: var(--cinza-claro);
+            max-width: 700px;
+        }
+        
+        .highlight {
+            color: var(--dourado);
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .destaque {
+            background-color: rgba(212, 175, 55, 0.15);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid var(--dourado);
+            margin: 3rem 0;
+        }
+        
+        .destaque h3 {
+            color: var(--dourado);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Seção de Benefícios */
+        .beneficios {
+            padding: 5rem 0;
+            background-color: var(--cinza-claro);
+        }
+        
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .beneficio-card {
+            background-color: var(--branco);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--sombra);
+            transition: transform 0.3s;
+            border-top: 5px solid var(--dourado);
+        }
+        
+        .beneficio-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .beneficio-icon {
+            font-size: 3rem;
+            color: var(--dourado);
+            margin-bottom: 1.5rem;
+        }
+        
+        .beneficio-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Seção de Captura */
+        .captura {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--azul-marinho) 0%, var(--azul-medio) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .captura::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background-color: var(--dourado);
+            border-radius: 50%;
+            top: -200px;
+            right: -200px;
+            opacity: 0.1;
+        }
+        
+        .captura::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: var(--azul-claro);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -150px;
+            opacity: 0.1;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title h2 {
+            font-size: 3rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 20px;
+            color: var(--branco);
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 5px;
+            background-color: var(--dourado);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+        
+        .section-title p {
+            max-width: 700px;
+            margin: 1.5rem auto 0;
+            color: var(--cinza-claro);
+            font-size: 1.2rem;
+        }
+        
+        .captura-container {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .captura-info {
+            flex: 1;
+            color: var(--branco);
+        }
+        
+        .captura-info h3 {
+            color: var(--dourado);
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .captura-info ul {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .captura-info li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 40px;
+            font-size: 1.1rem;
+        }
+        
+        .captura-info li:last-child {
+            border-bottom: none;
+        }
+        
+        .captura-info li i {
+            position: absolute;
+            left: 0;
+            top: 1rem;
+            color: var(--dourado);
+            font-size: 1.5rem;
+        }
+        
+        .captura-form-container {
+            flex: 1;
+            background-color: var(--branco);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--dourado);
+        }
+        
+        .captura-form-container::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--dourado) 0%, var(--azul-marinho) 100%);
+            top: 0;
+            left: 0;
+        }
+        
+        .captura-form h3 {
+            color: var(--azul-marinho);
+            margin-bottom: 1.8rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--azul-marinho);
+            font-size: 1.1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid var(--cinza-medio);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--dourado);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .radio-option {
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .radio-option input {
+            display: none;
+        }
+        
+        .radio-option label {
+            display: block;
+            padding: 1.2rem;
+            border: 2px solid var(--cinza-medio);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .radio-option input:checked + label {
+            border-color: var(--dourado);
+            background-color: rgba(212, 175, 55, 0.1);
+            color: var(--azul-marinho);
+            font-weight: 600;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 1.3rem;
+            background: linear-gradient(135deg, var(--dourado) 0%, var(--dourado-escuro) 100%);
+            color: var(--azul-marinho);
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px var(--sombra-dourada);
+            margin-top: 1rem;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px var(--sombra-dourada);
+        }
+        
+        .whatsapp-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 2rem;
+            color: var(--azul-marinho);
+            font-size: 1rem;
+            background-color: rgba(37, 211, 102, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        
+        .whatsapp-info i {
+            color: #25D366;
+            font-size: 1.5rem;
+        }
+        
+        .form-sucesso {
+            text-align: center;
+            padding: 3rem 1rem;
+            display: none;
+        }
+        
+        .form-sucesso i {
+            font-size: 5rem;
+            color: var(--dourado);
+            margin-bottom: 1.5rem;
+            animation: bounce 1s;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        .form-sucesso h3 {
+            color: var(--azul-marinho);
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        
+        .site-button {
+            display: inline-block;
+            margin-top: 2rem;
+            background-color: var(--azul-marinho);
+            color: var(--branco);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--azul-marinho);
+        }
+        
+        .site-button:hover {
+            background-color: transparent;
+            color: var(--azul-marinho);
+        }
+        
+        /* Footer Minimalista */
+        footer {
+            background-color: var(--azul-marinho);
+            color: var(--branco);
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--dourado);
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo i {
+            font-size: 2rem;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            color: var(--branco);
+            text-decoration: none;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--dourado);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--cinza-claro);
+            font-size: 0.95rem;
+            width: 100%;
+        }
+        
+        /* Responsividade Mobile */
+        @media (max-width: 992px) {
+            .captura-container {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .beneficios-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.3rem;
+            }
+            
+            .captura-form-container {
+                padding: 2rem;
+            }
+            
+            .destaque {
+                padding: 1.5rem;
+            }
+            
+            .destaque h3 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cta-button {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .captura {
+                padding: 3rem 0;
+            }
+            
+            .beneficios {
+                padding: 3rem 0;
+            }
+            
+            .beneficio-card {
+                padding: 2rem;
+            }
+            
+            .form-control {
+                padding: 1rem;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+            }
+            
+            .radio-option {
+                min-width: 100%;
+            }
+            
+            .btn-submit {
+                padding: 1.1rem;
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Animações de entrada */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="https://nova-tek-site.vercel.app" class="logo" target="_blank">
+                <i class="fas fa-code"></i>
+                <div>NOVATEK DEV</div>
+            </a>
+            
+            <a href="#captura" class="cta-button">Quero Ser Dev</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero fade-in">
+        <div class="container hero-content">
+            <h1>Torne-se um <span class="highlight">Desenvolvedor Profissional</span> em 6 Meses</h1>
+            <p>Da primeira linha de código à sua primeira vaga no mercado de tecnologia. Metodologia prática com projetos reais e mentoria individual.</p>
+            
+            <div class="destaque slide-up">
+                <h3>⚠️ OFERTA COM TEMPO LIMITADO ⚠️</h3>
+                <p><strong>Preços promocionais disponíveis apenas para os primeiros 50 inscritos!</strong> Depois disso, os valores aumentam em 35%.</p>
+            </div>
+            
+            <a href="#captura" class="cta-button">Garantir Minha Vaga Agora</a>
+        </div>
+    </section>
+
+    <!-- Seção de Benefícios -->
+    <section class="beneficios">
+        <div class="container">
+            <div class="section-title">
+                <h2>O Que Você Vai Aprender</h2>
+                <p>Trilhas completas adaptadas ao seu nível atual e objetivos profissionais</p>
+            </div>
+            
+            <div class="beneficios-grid">
+                <div class="beneficio-card slide-up">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Júnior - R$ 100/mês</h3>
+                    <p>Front-end e back-end do zero. Aprenda lógica, HTML, CSS, JavaScript e construa projetos reais para seu portfólio. Ideal para quem está começando.</p>
+                </div>
+                
+                <div class="beneficio-card slide-up" style="animation-delay: 0.2s">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Pleno - R$ 125/mês</h3>
+                    <p>Aprofunde conhecimentos e crie aplicações completas. Aprenda arquitetura, APIs, autenticação e banco de dados. Para quem já tem experiência básica.</p>
+                </div>
+                
+                <div class="beneficio-card slide-up" style="animation-delay: 0.4s">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Sênior - R$ 160/mês</h3>
+                    <p>Domine arquitetura de sistemas, performance, segurança e escalabilidade. Aprenda a liderar projetos e tomar decisões técnicas. Para avançar na carreira.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Captura -->
+    <section class="captura" id="captura">
+        <div class="container">
+            <div class="section-title">
+                <h2>Garanta Sua Vaga Agora</h2>
+                <p>Preencha o formulário para receber uma proposta personalizada e garantir o preço promocional</p>
+            </div>
+            
+            <div class="captura-container">
+                <div class="captura-info">
+                    <h3>Por que escolher a Novatek Dev?</h3>
+                    <p>Com anos de experiência em desenvolvimento e formação de profissionais, oferecemos o caminho mais direto para sua primeira vaga ou promoção.</p>
+                    
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>Metodologia Prática:</strong> 80% prática e 20% teoria</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Projetos Reais:</strong> Portfólio com projetos do mercado</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Mentoria Individual:</strong> Suporte direto com nossos devs</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Comunidade Ativa:</strong> Network com outros alunos e profissionais</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>Preços Promocionais:</strong> Apenas para os primeiros inscritos</li>
+                    </ul>
+                    
+                    <div class="whatsapp-info">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <strong>Receba uma proposta no WhatsApp</strong>
+                            <p>Nossa equipe entrará em contato em até 24h</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="captura-form-container slide-up">
+                    <div class="captura-form">
+                        <h3>Formulário de Interesse</h3>
+                        <form id="leadForm" action="https://formsubmit.co/contato.novatek@gmail.com" method="POST">
+                            <!-- Configuração do FormSubmit -->
+                            <input type="hidden" name="_subject" value="🔥 NOVO LEAD - Novatek Dev">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
+                            <input type="hidden" name="_captcha" value="false">
+                            
+                            <!-- Configuração para WhatsApp -->
+                            <input type="hidden" name="whatsapp_notification" id="whatsappNotification">
+                            
+                            <div class="form-group">
+                                <label for="nome">Nome Completo *</label>
+                                <input type="text" id="nome" name="nome" class="form-control" required placeholder="Digite seu nome completo">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">E-mail *</label>
+                                <input type="email" id="email" name="email" class="form-control" required placeholder="seu@email.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="telefone">WhatsApp *</label>
+                                <input type="tel" id="telefone" name="telefone" class="form-control" required placeholder="(11) 99999-9999">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="idade">Idade *</label>
+                                <select id="idade" name="idade" class="form-control" required>
+                                    <option value="" selected disabled>Selecione sua idade</option>
+                                    <option value="18-24">18 a 24 anos</option>
+                                    <option value="25-30">25 a 30 anos</option>
+                                    <option value="31-40">31 a 40 anos</option>
+                                    <option value="41-50">41 a 50 anos</option>
+                                    <option value="maior-50">Acima de 50 anos</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="renda">Renda Mensal Atual *</label>
+                                <select id="renda" name="renda" class="form-control" required>
+                                    <option value="" selected disabled>Selecione sua renda</option>
+                                    <option value="ate-1500">Até R$ 1.500</option>
+                                    <option value="1501-3000">R$ 1.501 a R$ 3.000</option>
+                                    <option value="3001-5000">R$ 3.001 a R$ 5.000</option>
+                                    <option value="5001-8000">R$ 5.001 a R$ 8.000</option>
+                                    <option value="acima-8000">Acima de R$ 8.000</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Qual seu nível de interesse? *</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input type="radio" id="junior" name="nivel_interesse" value="junior" required>
+                                        <label for="junior">Júnior<br><small>R$ 100/mês</small></label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="pleno" name="nivel_interesse" value="pleno">
+                                        <label for="pleno">Pleno<br><small>R$ 125/mês</small></label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="senior" name="nivel_interesse" value="senior">
+                                        <label for="senior">Sênior<br><small>R$ 160/mês</small></label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="conheceu">Como nos conheceu? *</label>
+                                <select id="conheceu" name="conheceu" class="form-control" required>
+                                    <option value="" selected disabled>Selecione uma opção</option>
+                                    <option value="facebook">Facebook</option>
+                                    <option value="instagram">Instagram</option>
+                                    <option value="google">Google</option>
+                                    <option value="indicacao">Indicação</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="objetivo">Por que quer aprender programação? *</label>
+                                <textarea id="objetivo" name="objetivo" class="form-control" rows="3" required placeholder="Conte-nos seus objetivos..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" required>
+                                    Concordo em receber uma proposta personalizada e contato via WhatsApp
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit">Quero Minha Proposta Personalizada</button>
+                            
+                            <div class="whatsapp-info" style="margin-top: 1.5rem;">
+                                <i class="fas fa-bolt"></i>
+                                <div>
+                                    <strong>Resposta em até 24h!</strong>
+                                    <p>Nossa equipe analisará seu perfil e enviará uma proposta personalizada</p>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        <div class="form-sucesso" id="successMessage">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Cadastro Realizado com Sucesso!</h3>
+                            <p>Recebemos suas informações e em até 24h nossa equipe entrará em contato com uma proposta personalizada.</p>
+                            <p>Enquanto isso, conheça mais sobre a Novatek Dev:</p>
+                            <a href="https://nova-tek-site.vercel.app" class="site-button" target="_blank">Visitar Site Principal</a>
+                            <div style="margin-top: 2rem;">
+                                <p>Siga-nos no Instagram:</p>
+                                <a href="https://instagram.com/novatek_ltda" class="social-icons" target="_blank" style="display: inline-flex; margin-top: 0.5rem;">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <a href="https://nova-tek-site.vercel.app" class="footer-logo" target="_blank">
+                    <i class="fas fa-code"></i>
+                    <div>NOVATEK DEV</div>
+                </a>
+                
+                <p>Formação completa de desenvolvedores com metodologia prática e projetos reais</p>
+                
+                <div class="social-icons">
+                    <a href="https://instagram.com/novatek_ltda" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://nova-tek-site.vercel.app" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                
+                <div class="copyright">
+                    <p>© 2023 Novatek Dev - CNPJ: 51.673.025/0001-97</p>
+                    <p>contato.novatek@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sistema de envio de formulário com WhatsApp para 4 números
+        const leadForm = document.getElementById('leadForm');
+        const whatsappNotification = document.getElementById('whatsappNotification');
+        const successMessage = document.getElementById('successMessage');
+        
+        // Lista de números para WhatsApp (formato: código país + DDD + número)
+        const numerosWhatsApp = [
+            { nome: "Matheus", numero: "554788434510" },
+            { nome: "Murilo", numero: "554498225448" },
+            { nome: "Caio", numero: "554491067381" },
+            { nome: "Novatek", numero: "554497187016" }
+        ];
+        
+        leadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Coletar dados do formulário
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('telefone').value;
+            const email = document.getElementById('email').value;
+            const idade = document.getElementById('idade').options[document.getElementById('idade').selectedIndex].text;
+            const renda = document.getElementById('renda').options[document.getElementById('renda').selectedIndex].text;
+            const nivel = document.querySelector('input[name="nivel_interesse"]:checked') ? document.querySelector('input[name="nivel_interesse"]:checked').value : '';
+            const conheceu = document.getElementById('conheceu').options[document.getElementById('conheceu').selectedIndex].text;
+            const objetivo = document.getElementById('objetivo').value;
+            
+            // Formatar mensagem para WhatsApp
+            const mensagem = `🚀 *NOVO LEAD - Novatek Dev* 🚀%0A%0A` +
+                            `*Nome:* ${nome}%0A` +
+                            `*Telefone:* ${telefone}%0A` +
+                            `*Email:* ${email}%0A` +
+                            `*Idade:* ${idade}%0A` +
+                            `*Renda:* ${renda}%0A` +
+                            `*Nível de Interesse:* ${nivel.toUpperCase()}%0A` +
+                            `*Como conheceu:* ${conheceu}%0A` +
+                            `*Objetivo:* ${objetivo}%0A%0A` +
+                            `*URGENTE:* Entrar em contato para proposta personalizada!`;
+            
+            // Configuração do CallMeBot para múltiplos números
+            // IMPORTANTE: Configure sua conta no CallMeBot
+            // https://www.callmebot.com/blog/free-api-whatsapp-messages/
+            
+            const apiKey = 'SUA_CHAVE_API_AQUI'; // Sua chave API do CallMeBot
+            
+            // Função para enviar mensagem para um número específico
+            function enviarWhatsApp(numero, nomeContato) {
+                const whatsappURL = `https://api.callmebot.com/whatsapp.php?phone=${numero}&text=${mensagem}&apikey=${apiKey}`;
+                
+                fetch(whatsappURL)
+                    .then(response => {
+                        console.log(`WhatsApp enviado para ${nomeContato}:`, response.ok);
+                    })
+                    .catch(error => {
+                        console.error(`Erro ao enviar para ${nomeContato}:`, error);
+                    });
+            }
+            
+            // Enviar para todos os números da lista
+            let logsWhatsApp = [];
+            numerosWhatsApp.forEach(contato => {
+                enviarWhatsApp(contato.numero, contato.nome);
+                logsWhatsApp.push(`Enviado para ${contato.nome} (${contato.numero})`);
+            });
+            
+            // Adicionar logs ao campo oculto para envio por email
+            whatsappNotification.value = `WhatsApp enviado para: ${logsWhatsApp.join(' | ')}`;
+            
+            // Enviar formulário para FormSubmit (email)
+            const formData = new FormData(leadForm);
+            
+            fetch(leadForm.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Esconder formulário e mostrar mensagem de sucesso
+                    leadForm.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Scroll para a mensagem de sucesso
+                    successMessage.scrollIntoView({ behavior: 'smooth' });
+                    
+                    console.log('Formulário enviado com sucesso para o FormSubmit');
+                    
+                    // Redirecionar após 5 segundos (opcional)
+                    // setTimeout(() => {
+                    //     window.location.href = "https://nova-tek-site.vercel.app";
+                    // }, 5000);
+                } else {
+                    alert('Houve um erro ao enviar o formulário. Por favor, tente novamente.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao enviar formulário:', error);
+                alert('Houve um erro ao enviar o formulário. Por favor, tente novamente.');
+            });
+        });
+        
+        // Animações ao rolar a página
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('slide-up');
+                }
+            });
+        }, observerOptions);
+        
+        // Observar elementos para animação
+        document.querySelectorAll('.beneficio-card').forEach(card => {
+            observer.observe(card);
+        });
+        
+        // Suavizar rolagem para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Validação em tempo real
+        document.querySelectorAll('input, select, textarea').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.style.borderColor = 'red';
+                } else {
+                    this.style.borderColor = '';
+                }
+            });
+            
+            field.addEventListener('input', function() {
+                this.style.borderColor = '';
+            });
+        });
+    </script>
+</body>
+</html>
